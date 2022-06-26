@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {positionContext} from '../Providers/conductor';
+import { conductorContext } from '../Providers/conductor';
 
-const Pile = ({numChips}) => {
+const Pile = ({numChips, coord}) => {
+  const { increment } = useContext(conductorContext);
   const getChipState = numChips => {
     if (numChips === 1) {
       return "pile--one-chip";
@@ -9,14 +10,21 @@ const Pile = ({numChips}) => {
       return "pile--two-chips";
     } else if (numChips === 3) {
       return "pile--three-chips";
-    } else if (numChips >= 4) {
+    } else if (numChips === 4) {
+      return "pile--four-chips";
+    } else if (numChips >= 5) {
       return "pile--topple";
     } else {
       return "pile--no-chips"
     }
   }
+
+  const sendIncrement = () => {
+    increment(coord)
+  }
+
   return (
-    <div className={`pile ${getChipState(numChips)}`}></div>
+    <button className={`pile ${getChipState(numChips)}`} onClick={sendIncrement}></button>
   )
 }
 

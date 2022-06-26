@@ -5,7 +5,7 @@ const PileRow = ({row, rowNum }) => {
   return (
     <>
     <div className="grid__pile-row">
-      {row.map((val, i) => (<Pile numChips={val} key={`${rowNum}-${i}`}/>)) }
+      {row.map((val, i) => (<Pile numChips={val} key={`${rowNum}-${i}`} coord={{x:i, y:rowNum}}/>)) }
     </div>
     </>
   )

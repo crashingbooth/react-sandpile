@@ -11,26 +11,43 @@ const Conductor = (props) => {
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
+  const staleAction = useRef();
   const [grid, setGrid] = useState();
 
   const dim = {height: 5, width:3};
 
   useEffect(() => {
     reset()
+    staleAction.current = 'wait';
     rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
   },[])
 
   const prepareNext = () => {
     const toppledPiles = [...topples.current];
     if (toppledPiles.length === 0) {
-      const coord = randCoord(dim)
-      nextGridRef.current[coord.y][coord.x] += 1;
-      topples.current = getToppledPiles(nextGridRef.current);
+      performStaleAction()
     } else {
       const diffGrid = getDifferenceGrid(toppledPiles, dim);
       nextGridRef.current = applyDifferenceGrid(nextGridRef.current, diffGrid, dim);
       topples.current = getToppledPiles(nextGridRef.current);
     }
+  }
+
+  const performStaleAction = () => {
+    if (staleAction.current === 'wait') {
+      topples.current = getToppledPiles(nextGridRef.current);
+      return;
+    }
+
+    let coord;
+    if (staleAction.current === 'random') {
+      coord = randCoord(dim);
+    } else if (staleAction.current === 'centre') {
+      coord = {x: Math.floor(dim.width/2), y: Math.floor(dim.height/2) };
+    }
+
+    nextGridRef.current[coord.y][coord.x] += 1;
+    topples.current = getToppledPiles(nextGridRef.current);
   }
 
   const safeTrigger = (coord, time) => {
@@ -82,11 +99,18 @@ const Conductor = (props) => {
     return {x: Math.floor(Math.random() * dim.width),y: Math.floor(Math.random() * dim.height)}
   }
 
+  const increment = coords => {
+    nextGridRef.current[coords.y][coords.x] += 1;
+    console.log(coords, nextGridRef.current[coords.y][coords.x] );
+    setGrid(copy2d(nextGridRef.current));
+  }
+
 
   const provideData = {
     grid,
     play,
     stop,
+    increment,
     reset
   };
 
