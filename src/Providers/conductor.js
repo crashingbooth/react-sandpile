@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext, useEffect, useRef } from "react";
 import * as Tone from "tone";
-import { emptyGrid, applyDifferenceGrid, getDifferenceGrid, getToppledPiles } from "../sandpile"
+import { emptyGrid, randomGrid, applyDifferenceGrid, getDifferenceGrid, getToppledPiles } from "../sandpile"
 import { sampler, pool } from "../audioUrls";
 
 export const conductorContext = createContext();
@@ -8,7 +8,6 @@ export const conductorContext = createContext();
 const Conductor = (props) => {
   const playing = useRef();
   const [bpm, setBpm] = useState(100);
-  const gridRef = useRef();
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
@@ -17,11 +16,8 @@ const Conductor = (props) => {
   const dim = {height: 11, width:3};
 
   useEffect(() => {
-    console.log(pool);
-    nextGridRef.current = emptyGrid(dim);
-    topples.current = [];
+    reset()
     rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
-    setGrid(nextGridRef.current);
   },[])
 
   const prepareNext = () => {
@@ -67,13 +63,18 @@ const Conductor = (props) => {
     playing.current = false;
   }
 
+  const reset = () => {
+    nextGridRef.current = randomGrid(dim);
+    setGrid(nextGridRef.current);
+    topples.current = [];
+  }
+
   const changeBPM = (newTempo) => {
     Tone.Transport.bpm.value = newTempo;
     setBpm(newTempo)
   }
 
   const copy2d = matrix => {
-    console.log(matrix);
     return matrix.map(row => [...row]);
   }
 
@@ -85,7 +86,8 @@ const Conductor = (props) => {
   const provideData = {
     grid,
     play,
-    stop
+    stop,
+    reset
   };
 
   return (

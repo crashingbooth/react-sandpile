@@ -82,6 +82,18 @@ export const emptyGrid = (dimensions) => {
   return grid;
 }
 
+export const randomGrid = (dimensions) => {
+  let grid = [];
+  for (let y = 0; y < dimensions.height; y++) {
+    let line = [];
+    for (let x = 0; x < dimensions.width; x++) {
+      line.push(Math.floor(Math.random() * 5));
+    }
+    grid.push([...line])
+  }
+  return grid;
+}
+
 const showGrid = (grid) => {
   grid.forEach(line => {
     console.log(line.join(" "));
