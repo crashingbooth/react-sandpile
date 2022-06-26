@@ -61,15 +61,17 @@ export const getCoord = (centre, pos, dimensions) => {
   }
 }
 
-const getCapacity = grid => {
+export const getCapacity = grid => {
   const capacity = grid.length * grid[0].length * 3;
-  const gridTotal = grid.reduce((total, line) => {
-    const lineTotal = line.reduce((lineSum, cell) => { return lineSum + cell },0);
-    return lineTotal + total;
-  },0)
-  return {capacity, gridTotal};
+  let gridTotal = 0;
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      gridTotal += grid[row][col];
+    }
+  }
+  const res = {capacity, gridTotal, ratio:gridTotal/capacity};
+  return res;
 }
-
 
 
 // helper

@@ -33,18 +33,42 @@ body {
   }
 }
 
-.transport {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.section {
   padding: $section-padding;
   margin: $section-margin;
   border: 1px solid gray;
   border-radius: .5rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  h3 {
+    font-size: 1.5rem;
+    color: $color-5;
+    font-weight: 300;
+  }
+
+  label, p {
+    font-size: 1.5rem;
+    color: $color-5;
+  }
+}
+
+.transport {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 
   button {
     padding: .5rem;
     margin: 1rem;
+  }
+
+  &____radio-group {
+
+  }
+
+  &__stale-action {
+    display: flex;
+    flex-direction: column;
   }
 }
 

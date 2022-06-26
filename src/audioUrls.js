@@ -4,12 +4,12 @@ const resourceBaseUrl = "https://raw.githubusercontent.com/crashingbooth/simple-
 
 const resourceRecipe =
   [{ name: "lo", numFiles: 6},
-  { name: "mid", numFiles: 4},
-  { name: "hi",  numFiles: 6},
+  // { name: "mid", numFiles: 4},
+  // { name: "hi",  numFiles: 6},
   { name: "feel", numFiles: 6},
-  { name: "gam1", numFiles: 7},
+  // { name: "gam1", numFiles: 7},
   { name: "cbgam1", numFiles: 5},
-  { name: "cbgam2", numFiles: 5},
+  // { name: "cbgam2", numFiles: 5},
   { name: "coffee", numFiles: 12},
   { name: "morefol", numFiles: 10},
 ];

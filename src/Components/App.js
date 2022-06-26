@@ -1,5 +1,6 @@
 import Grid from './Grid';
 import Transport from './Transport';
+import Options from './Options';
 import "../sass/main.scss"
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <div className="main__container">
         <div className="main">
           <Transport/>
+          <Options/>
           <Grid/>
         </div>
       </div>

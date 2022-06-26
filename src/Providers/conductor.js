@@ -1,31 +1,35 @@
 import React, { useState, useContext, createContext, useEffect, useRef } from "react";
 import * as Tone from "tone";
-import { emptyGrid, randomGrid, applyDifferenceGrid, getDifferenceGrid, getToppledPiles } from "../sandpile"
+import { emptyGrid, randomGrid, applyDifferenceGrid, getDifferenceGrid, getToppledPiles, getCapacity } from "../sandpile"
 import { sampler, pool } from "../audioUrls";
 
 export const conductorContext = createContext();
 
 const Conductor = (props) => {
   const playing = useRef();
+  const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState(100);
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
   const staleAction = useRef();
   const [grid, setGrid] = useState();
+  const [showNumbers, setShowNumbers] = useState(false);
+  const occupancyRef = useRef();
+  const [occupancy, setOccupancy] = useState();
 
-  const dim = {height: 5, width:3};
+  const dim = {height: 3, width:15};
 
   useEffect(() => {
     reset()
-    staleAction.current = 'wait';
+    staleAction.current = 'random';
     rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
   },[])
 
   const prepareNext = () => {
     const toppledPiles = [...topples.current];
     if (toppledPiles.length === 0) {
-      performStaleAction()
+      performStaleAction();
     } else {
       const diffGrid = getDifferenceGrid(toppledPiles, dim);
       nextGridRef.current = applyDifferenceGrid(nextGridRef.current, diffGrid, dim);
@@ -67,6 +71,7 @@ const Conductor = (props) => {
       });
 
     setGrid(copy2d(nextGridRef.current));
+    setOccupancy(getCapacity(nextGridRef.current));
     prepareNext()
   }, "8n").start(0);
 
@@ -81,6 +86,12 @@ const Conductor = (props) => {
   }
 
   const reset = () => {
+    nextGridRef.current = emptyGrid(dim);
+    setGrid(nextGridRef.current);
+    topples.current = [];
+  }
+
+  const randomReset = () => {
     nextGridRef.current = randomGrid(dim);
     setGrid(nextGridRef.current);
     topples.current = [];
@@ -105,13 +116,36 @@ const Conductor = (props) => {
     setGrid(copy2d(nextGridRef.current));
   }
 
+  const setStaleAction = action => {
+    staleAction.current = action;
+    const wasPlaying = playing.current;
+    if (wasPlaying) {
+      stop();
+      play();
+    }
+  }
+
+  const playPause = () => {
+    if (playing.current)  {
+      stop();
+    } else {
+      play();
+    }
+    setIsPlaying(playing.current);
+  }
+
 
   const provideData = {
     grid,
-    play,
-    stop,
+    playPause,
+    isPlaying,
     increment,
-    reset
+    occupancy,
+    reset,
+    randomReset,
+    setStaleAction,
+    showNumbers,
+    setShowNumbers
   };
 
   return (

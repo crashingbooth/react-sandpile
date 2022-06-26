@@ -2,13 +2,26 @@ import React, { useState, useEffect, useContext } from 'react';
 import {conductorContext} from '../Providers/conductor';
 
 const Transport = (props) => {
-  const { play, stop, reset } = useContext(conductorContext);
+  const { playPause, isPlaying, reset, randomReset, setStaleAction } = useContext(conductorContext);
+
+  const selectStaleAction = (action) => {
+    setStaleAction(action.target.value);
+  }
+
   return (
     <>
-      <div className="transport">
-        <button onClick={play}>Play</button>
-        <button onClick={stop}>Stop</button>
+      <div className="transport section">
+        <button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button>
         <button onClick={reset}>Reset</button>
+        <button onClick={randomReset}>Random</button>
+        <div className="transport__stale-action">
+          <h3>when stale:</h3>
+          <div onChange={selectStaleAction} className="transport__radio-group">
+            <input type="radio" value="wait" name="staticAction"  /> <label>wait </label>
+            <input type="radio" value="random" name="staticAction" defaultChecked/> <label>add random </label>
+            <input type="radio" value="centre" name="staticAction" /> <label>add center </label>
+          </div>
+        </div>
       </div>
     </>
   )
