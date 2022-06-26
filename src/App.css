@@ -23,6 +23,11 @@ body {
   box-sizing: border-box;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
 .grid__pile-row {
   margin: auto 0;
 }

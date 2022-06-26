@@ -87,28 +87,3 @@ const showGrid = (grid) => {
     console.log(line.join(" "));
   })
 }
-
-
-
-//  create grid
-const dim = {width: 5, height: 5};
-let grid = emptyGrid(dim);
-
-
-for (let i = 0; i < 12; i++) {
-  // add 4 to centre
-
-  // get toppled piles, if any
-  const toppledPiles = getToppledPiles(grid);
-  if (toppledPiles.length === 0) {
-    grid[2][2] = 4;
-  }
-  // use toppledPiles to create difference grid
-  const diffGrid = getDifferenceGrid(toppledPiles, dim);
-  // apply difference grid to original to get new grid
-  let newGrid = applyDifferenceGrid(grid, diffGrid, dim);
-  console.log(i);
-  showGrid(newGrid);
-  grid = newGrid
-  console.log(getCapacity(grid));
-}

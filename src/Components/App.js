@@ -1,4 +1,5 @@
 import Grid from './Grid';
+import Transport from './Transport';
 import "../sass/main.scss"
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <header className="App-header">
       </header>
       <div className="main">
+        <Transport/>
         <Grid/>
       </div>
     </div>

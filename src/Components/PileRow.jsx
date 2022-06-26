@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Pile from "./Pile"
-import {positionContext} from '../Providers/conductor';
 
 const PileRow = ({row, rowNum }) => {
   return (

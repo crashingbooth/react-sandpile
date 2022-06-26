@@ -7,28 +7,28 @@ export const conductorContext = createContext();
 
 const Conductor = (props) => {
   const playing = useRef();
-  const [bpm, setBpm] = useState(140);
+  const [bpm, setBpm] = useState(100);
   const gridRef = useRef();
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
   const [grid, setGrid] = useState();
 
-  const dim = {height: 5, width:6};
+  const dim = {height: 11, width:3};
 
   useEffect(() => {
     console.log(pool);
-    gridRef.current = emptyGrid(dim);
+    nextGridRef.current = emptyGrid(dim);
     topples.current = [];
-    rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i]);
-    setGrid(gridRef.current);
+    rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
+    setGrid(nextGridRef.current);
   },[])
 
   const prepareNext = () => {
     const toppledPiles = [...topples.current];
     if (toppledPiles.length === 0) {
-      nextGridRef.current = grid.copy2d();
-      nextGridRef.current[2][2] += 2;
+      const coord = randCoord(dim)
+      nextGridRef.current[coord.y][coord.x] += 1;
       topples.current = getToppledPiles(nextGridRef.current);
     } else {
       const diffGrid = getDifferenceGrid(toppledPiles, dim);
@@ -53,9 +53,9 @@ const Conductor = (props) => {
         safeTrigger(coord, time);
       });
 
-    setGrid(nextGridRef.current.copy2d());
+    setGrid(copy2d(nextGridRef.current));
     prepareNext()
-  }, "4n").start(0);
+  }, "8n").start(0);
 
     Tone.Transport.start();
     playing.current = true;
@@ -73,7 +73,12 @@ const Conductor = (props) => {
   }
 
   const copy2d = matrix => {
+    console.log(matrix);
     return matrix.map(row => [...row]);
+  }
+
+  const randCoord = dim => {
+    return {x: Math.floor(Math.random() * dim.width),y: Math.floor(Math.random() * dim.height)}
   }
 
 
