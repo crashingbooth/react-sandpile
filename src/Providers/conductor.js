@@ -13,7 +13,7 @@ const Conductor = (props) => {
   const rowToLibrary = useRef();
   const [grid, setGrid] = useState();
 
-  const dim = {height: 11, width:3};
+  const dim = {height: 5, width:3};
 
   useEffect(() => {
     reset()

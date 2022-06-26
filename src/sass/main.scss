@@ -16,30 +16,62 @@ html {
 
 body {
   box-sizing: border-box;
+  background-color: $color-0;
 }
 
 .main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 5rem;
   background-color: $color-0;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.transport {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: $section-padding;
+  margin: $section-margin;
+  border: 1px solid gray;
+  border-radius: .5rem;
+
+  button {
+    padding: .5rem;
+    margin: 1rem;
+  }
+}
+
+.btn {
+
 }
 
 .grid {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid gray;
+  border-radius: .5rem;
+  margin: $section-margin;
+  padding: $section-padding;
 }
 
 .grid__pile-row {
   margin: auto 0;
-  display: inline-flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
 }
 
 .pile {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 3rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5rem;
 
   &--no-chips {
     background-color: $color-0;

@@ -7,9 +7,11 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      <div className="main">
-        <Transport/>
-        <Grid/>
+      <div className="main__container">
+        <div className="main">
+          <Transport/>
+          <Grid/>
+        </div>
       </div>
     </div>
   );
