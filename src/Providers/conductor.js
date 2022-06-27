@@ -8,7 +8,7 @@ export const conductorContext = createContext();
 const Conductor = (props) => {
   const playing = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [bpm, setBpm] = useState(100);
+  const [bpm, setBpm] = useState(60);
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
@@ -18,7 +18,12 @@ const Conductor = (props) => {
   const occupancyRef = useRef();
   const [occupancy, setOccupancy] = useState();
 
-  const dim = {height: 3, width:15};
+  const stepRef = useRef();
+  const historyRef = useRef({});
+  const [period, setPeriod] = useState("n/a");
+  const observingRef = useRef();
+
+  const dim = {height: 3, width:11}; // 3y x 15x is great
 
   useEffect(() => {
     reset()
@@ -70,9 +75,10 @@ const Conductor = (props) => {
         safeTrigger(coord, time);
       });
 
-    setGrid(copy2d(nextGridRef.current));
-    setOccupancy(getCapacity(nextGridRef.current));
-    prepareNext()
+      setGrid(copy2d(nextGridRef.current));
+      setOccupancy(getCapacity(nextGridRef.current));
+      prepareNext();
+      detectLoop();
   }, "8n").start(0);
 
     Tone.Transport.start();
@@ -85,16 +91,46 @@ const Conductor = (props) => {
     playing.current = false;
   }
 
+  const nextSequence = () => {
+    // setGrid(copy2d(nextGridRef.current));
+    // setOccupancy(getCapacity(nextGridRef.current));
+    // prepareNext();
+    detectLoop()
+
+  }
+
+  const detectLoop = () => {
+    const now = JSON.stringify(copy2d(nextGridRef.current));
+
+    if (observingRef.current) {
+      const periodStep = historyRef.current[now];
+      if (periodStep) {
+        setPeriod(stepRef.current - periodStep);
+        observingRef.current = false;
+      }
+    }
+    historyRef.current[JSON.stringify(copy2d(nextGridRef.current))] = stepRef.current;
+    stepRef.current += 1;
+  }
+
   const reset = () => {
     nextGridRef.current = emptyGrid(dim);
     setGrid(nextGridRef.current);
     topples.current = [];
+    stepRef.current = 0;
+    historyRef.current = {};
+    observingRef.current = true;
+    setPeriod("n/a");
   }
 
   const randomReset = () => {
     nextGridRef.current = randomGrid(dim);
     setGrid(nextGridRef.current);
     topples.current = [];
+    stepRef.current = 0;
+    historyRef.current = {};
+    observingRef.current = true;
+    setPeriod("n/a");
   }
 
   const changeBPM = (newTempo) => {
@@ -141,6 +177,7 @@ const Conductor = (props) => {
     isPlaying,
     increment,
     occupancy,
+    period,
     reset,
     randomReset,
     setStaleAction,
