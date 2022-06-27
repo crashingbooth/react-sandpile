@@ -23,7 +23,7 @@ const Conductor = (props) => {
   const [period, setPeriod] = useState("n/a");
   const observingRef = useRef();
 
-  const dim = {height: 3, width:11}; // 3y x 15x is great
+  const dim = {height: 3, width:13}; // 3y x 15x is great
 
   useEffect(() => {
     reset()

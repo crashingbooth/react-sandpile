@@ -3,15 +3,16 @@ import * as Tone from "tone";
 const resourceBaseUrl = "https://raw.githubusercontent.com/crashingbooth/simple-percussion/main/"
 
 const resourceRecipe =
-  [{ name: "lo", numFiles: 6},
+  [
+    // { name: "lo", numFiles: 6},
   // { name: "mid", numFiles: 4},
   // { name: "hi",  numFiles: 6},
   { name: "feel", numFiles: 6},
   // { name: "gam1", numFiles: 7},
   { name: "cbgam1", numFiles: 5},
+    { name: "morefol", numFiles: 10},
   // { name: "cbgam2", numFiles: 5},
   { name: "coffee", numFiles: 12},
-  { name: "morefol", numFiles: 10},
 ];
 const noteList = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
