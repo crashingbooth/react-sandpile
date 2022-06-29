@@ -27,6 +27,7 @@ export const getDifferenceGrid = (toppledPiles, dimensions) => {
 export const applyDifferenceGrid = (grid, differenceGrid, dimensions) => {
   // param: [[originalGrid]], [[changes]], dimensions: {width, height}
   // return: [[newGrid]]
+  console.log("sp",dimensions);
   let result = emptyGrid(dimensions);
   for (let y = 0; y < dimensions.height; y++) {
     for (let x = 0; x < dimensions.width; x++) {

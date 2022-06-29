@@ -15,11 +15,11 @@ const Transport = (props) => {
         <button onClick={reset}>Reset</button>
         <button onClick={randomReset}>Random</button>
         <div className="transport__stale-action">
-          <h3>when stale:</h3>
+          <h3>when still:</h3>
           <div onChange={selectStaleAction} className="transport__radio-group">
             <input type="radio" value="wait" name="staticAction"  /> <label>wait </label>
-            <input type="radio" value="random" name="staticAction" defaultChecked/> <label>add random </label>
-            <input type="radio" value="centre" name="staticAction" /> <label>add center </label>
+            <input type="radio" value="random grain" name="staticAction" defaultChecked/> <label>add random </label>
+            <input type="radio" value="centre grain" name="staticAction" /> <label>add center </label>
           </div>
         </div>
       </div>

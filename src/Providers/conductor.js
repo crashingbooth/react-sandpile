@@ -6,6 +6,7 @@ import { sampler, pool } from "../audioUrls";
 export const conductorContext = createContext();
 
 const Conductor = (props) => {
+  console.log(pool);
   const playing = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState(60);
@@ -23,12 +24,11 @@ const Conductor = (props) => {
   const [period, setPeriod] = useState("n/a");
   const observingRef = useRef();
 
-  const dim = {height: 3, width:13}; // 3y x 15x is great
+  const [dim, setDim] = useState({height: 3, width:13}); // 3y x 15x is great
 
   useEffect(() => {
     reset()
     staleAction.current = 'random';
-    rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
   },[])
 
   const prepareNext = () => {
@@ -62,6 +62,7 @@ const Conductor = (props) => {
   const safeTrigger = (coord, time) => {
     const library = rowToLibrary.current[coord.y];
     const sampleID = coord.x;
+    console.log(pool[library]);
     let note = pool[library][sampleID % pool[library].length];
             sampler.triggerAttackRelease(note, "16n", time);
   }
@@ -104,7 +105,7 @@ const Conductor = (props) => {
 
     if (observingRef.current) {
       const periodStep = historyRef.current[now];
-      if (periodStep) {
+      if (periodStep && topples.current.length > 0) {
         setPeriod(stepRef.current - periodStep);
         observingRef.current = false;
       }
@@ -115,6 +116,7 @@ const Conductor = (props) => {
 
   const reset = () => {
     nextGridRef.current = emptyGrid(dim);
+    rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
     setGrid(nextGridRef.current);
     topples.current = [];
     stepRef.current = 0;
@@ -170,6 +172,11 @@ const Conductor = (props) => {
     setIsPlaying(playing.current);
   }
 
+  const setDimAndReset = newDim => {
+    setDim(newDim);
+    reset();
+  }
+
 
   const provideData = {
     grid,
@@ -182,7 +189,8 @@ const Conductor = (props) => {
     randomReset,
     setStaleAction,
     showNumbers,
-    setShowNumbers
+    setShowNumbers,
+    dim, setDimAndReset
   };
 
   return (
