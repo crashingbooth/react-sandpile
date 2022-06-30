@@ -173,6 +173,7 @@ const Conductor = (props) => {
   }
 
   const setDimAndReset = newDim => {
+    console.log(newDim);
     setDim(newDim);
     reset();
   }

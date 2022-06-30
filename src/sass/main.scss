@@ -72,6 +72,39 @@ body {
   }
 }
 
+.options {
+  display: flex;
+  flex-direction: row;
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    min-height: 6rem;
+  }
+
+  &__size-picker {
+    width: 15rem;
+  }
+
+  &__picker-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.3rem;
+  }
+
+  input {
+    width: 3rem;
+    display: block;
+    text-align: right;
+  }
+}
+
 .btn {
 
 }
