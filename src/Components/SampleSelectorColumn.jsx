@@ -7,7 +7,7 @@ const SampleSelectorColumn = () => {
 
   return (
     <div className="sample-selector__wrapper">
-      {grid && grid.map((row, i) => <SampleSelector key={i}/>)}
+      {grid && grid.map((row, i) => <SampleSelector key={i} rowNum={i}/>)}
     </div>
   )
 }

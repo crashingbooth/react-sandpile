@@ -160,6 +160,23 @@ body {
     text-align: center;
     margin: 2px 0 ;
   }
+
+  button {
+    background-color: black;
+    border: none;
+  }
+}
+
+.sample-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .grid {

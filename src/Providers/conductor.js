@@ -12,6 +12,7 @@ const Conductor = (props) => {
   const nextGridRef = useRef();
   const topples = useRef();
   const rowToLibrary = useRef();
+  const poolList = useRef()
   const staleAction = useRef();
   const [grid, setGrid] = useState();
   const [showNumbers, setShowNumbers] = useState(true);
@@ -27,6 +28,7 @@ const Conductor = (props) => {
 
   useEffect(() => {
     reset()
+    poolList.current = Object.keys(pool);
     staleAction.current = 'random';
   },[dim])
 
@@ -168,6 +170,11 @@ const Conductor = (props) => {
     setDim(newDim);
   }
 
+  const changeRowToLibrary = (rowNum, newValue) => {
+    rowToLibrary.current[rowNum] = newValue;
+    console.log("rtl", rowToLibrary);
+  }
+
 
   const provideData = {
     grid,
@@ -181,6 +188,9 @@ const Conductor = (props) => {
     setStaleAction,
     showNumbers,
     setShowNumbers,
+    rowToLibrary,
+    poolList,
+    changeRowToLibrary,
     dim, setDimAndReset
   };
 
