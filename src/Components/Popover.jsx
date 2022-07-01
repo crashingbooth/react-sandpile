@@ -106,7 +106,7 @@ class Popover extends React.Component {
           return child;
         })}
         {ReactDOM.createPortal(
-          <div
+          <div className="sample-picker__dropdown"
             ref={el => (this.contentEl = el)}
             style={this.getContentStyles()}
             onMouseEnter={this.handleContentEnter}

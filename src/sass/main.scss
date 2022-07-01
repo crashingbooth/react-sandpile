@@ -177,6 +177,10 @@ body {
     display: flex;
     flex-direction: row;
   }
+
+  &__dropdown {
+    font-size: 1.5rem;
+  }
 }
 
 .grid {
