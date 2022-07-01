@@ -6,7 +6,7 @@ const SampleSelector = () => {
 
   return (
     <div className="sample-selector">
-      <p>*</p>
+      <i class="far fa-file-audio icon"></i>
     </div>
   )
 }

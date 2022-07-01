@@ -136,12 +136,11 @@ body {
   flex-direction: row;
   position: relative;
   left: $half-pile-size;
-
 }
 
 .sample-selector__wrapper {
-  margin: $section-margin;
-  padding: $section-padding;
+  margin: $section-margin 0;
+  padding: $section-padding 0;
   margin-left: auto;
 }
 
@@ -150,10 +149,16 @@ body {
   height: $pile-size;
   width: $pile-size;
 
-  p {
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $pile-size;
+    width: $pile-size;
+    font-size: 2rem;
     color: $color-5;
-    margin: 0 auto;
-
+    text-align: center;
+    margin: 2px 0 ;
   }
 }
 
