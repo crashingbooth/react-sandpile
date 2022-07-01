@@ -131,6 +131,32 @@ body {
 
 }
 
+.grid-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: $half-pile-size;
+
+}
+
+.sample-selector__wrapper {
+  margin: $section-margin;
+  padding: $section-padding;
+  margin-left: auto;
+}
+
+.sample-selector {
+  display: block;
+  height: $pile-size;
+  width: $pile-size;
+
+  p {
+    color: $color-5;
+    margin: 0 auto;
+
+  }
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -139,6 +165,8 @@ body {
   border-radius: .5rem;
   margin: $section-margin;
   padding: $section-padding;
+
+  top: $pile-size;
 }
 
 .grid__pile-row {
@@ -148,8 +176,8 @@ body {
 }
 
 .pile {
-  width: 3rem;
-  height: 3rem;
+  width: $pile-size;
+  height: $pile-size;
   border-radius: 5rem;
   border: none;
   margin: 1px;

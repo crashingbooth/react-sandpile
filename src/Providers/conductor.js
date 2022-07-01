@@ -113,16 +113,17 @@ const Conductor = (props) => {
     rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
     setGrid(nextGridRef.current);
     topples.current = [];
-    stepRef.current = 0;
-    historyRef.current = {};
-    observingRef.current = true;
-    setPeriod("n/a");
+    observationReset();
   }
 
   const randomReset = () => {
     nextGridRef.current = randomGrid(dim);
     setGrid(nextGridRef.current);
     topples.current = [];
+    observationReset();
+  }
+
+  const observationReset = () => {
     stepRef.current = 0;
     historyRef.current = {};
     observingRef.current = true;
@@ -146,15 +147,12 @@ const Conductor = (props) => {
     nextGridRef.current[coords.y][coords.x] += 1;
     console.log(coords, nextGridRef.current[coords.y][coords.x] );
     setGrid(copy2d(nextGridRef.current));
+    observationReset();
   }
 
   const setStaleAction = action => {
     staleAction.current = action;
     const wasPlaying = playing.current;
-    if (wasPlaying) {
-      stop();
-      play();
-    }
   }
 
   const playPause = () => {
@@ -167,7 +165,6 @@ const Conductor = (props) => {
   }
 
   const setDimAndReset = newDim => {
-    console.log("cond set dim", newDim);
     setDim(newDim);
   }
 

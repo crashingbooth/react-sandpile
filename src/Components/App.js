@@ -1,4 +1,4 @@
-import Grid from './Grid';
+import GridWrapper from './GridWrapper';
 import Transport from './Transport';
 import Options from './Options';
 import "../sass/main.scss"
@@ -12,7 +12,7 @@ function App() {
         <div className="main">
           <Transport/>
           <Options/>
-          <Grid/>
+          <GridWrapper/>
         </div>
       </div>
     </div>
