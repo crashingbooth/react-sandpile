@@ -6,7 +6,6 @@ import { sampler, pool } from "../audioUrls";
 export const conductorContext = createContext();
 
 const Conductor = (props) => {
-  console.log(pool);
   const playing = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState(60);
@@ -29,7 +28,7 @@ const Conductor = (props) => {
   useEffect(() => {
     reset()
     staleAction.current = 'random';
-  },[])
+  },[dim])
 
   const prepareNext = () => {
     const toppledPiles = [...topples.current];
@@ -173,9 +172,8 @@ const Conductor = (props) => {
   }
 
   const setDimAndReset = newDim => {
-    console.log(newDim);
+    console.log("cond set dim", newDim);
     setDim(newDim);
-    reset();
   }
 
 

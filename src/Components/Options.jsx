@@ -21,6 +21,7 @@ const Options = (props) => {
 
   const editClicked = () => {
     if (sizeEditing) {
+      console.log("options", localDim);
       setDimAndReset(localDim)
       setSizeEditing(false)
     } else {
@@ -29,11 +30,11 @@ const Options = (props) => {
   }
 
   const setHeight = e => {
-    setLocalDim({...localDim, height: e.target.value})
+    setLocalDim({...localDim, height: Number(e.target.value)})
   }
 
   const setWidth = e => {
-    setLocalDim({...localDim, width: e.target.value})
+    setLocalDim({...localDim, width: Number(e.target.value)})
   }
 
   return (

@@ -4,6 +4,8 @@ import PileRow from "./PileRow";
 
 const Grid = () => {
   const { grid } = useContext(conductorContext);
+    console.log("grid", grid && grid.length);
+
   return (
     <div className="grid">
       {grid && grid.map((row, i) => (<PileRow row={row} key={i} rowNum={i}/>)) }
