@@ -85,23 +85,45 @@ body {
     flex-direction: column;
     padding: 0 2rem;
     min-height: 6rem;
+    min-width: 18rem;
   }
 
-  &__size-picker {
-    width: 15rem;
-  }
-
-  &__picker-row {
+  &__row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     font-size: 1.3rem;
+    height: $options-line-height;
+
+    &--text-input {
+      justify-content: space-between;
+    }
+
+    &--checkbox {
+      justify-content: flex-start;
+    }
   }
 
   input {
-    width: 3rem;
     display: block;
     text-align: right;
+  }
+
+  button {
+    margin-bottom: .3rem;
+  }
+
+  p {
+    display: block;
+    height: $options-line-height;
+  }
+
+  &__checkbox {
+    width: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  &__input {
+    width: 3rem;
   }
 }
 

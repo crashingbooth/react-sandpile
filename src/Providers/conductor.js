@@ -14,7 +14,7 @@ const Conductor = (props) => {
   const rowToLibrary = useRef();
   const staleAction = useRef();
   const [grid, setGrid] = useState();
-  const [showNumbers, setShowNumbers] = useState(false);
+  const [showNumbers, setShowNumbers] = useState(true);
   const occupancyRef = useRef();
   const [occupancy, setOccupancy] = useState();
 
@@ -61,7 +61,6 @@ const Conductor = (props) => {
   const safeTrigger = (coord, time) => {
     const library = rowToLibrary.current[coord.y];
     const sampleID = coord.x;
-    console.log(pool[library]);
     let note = pool[library][sampleID % pool[library].length];
             sampler.triggerAttackRelease(note, "16n", time);
   }
@@ -92,11 +91,7 @@ const Conductor = (props) => {
   }
 
   const nextSequence = () => {
-    // setGrid(copy2d(nextGridRef.current));
-    // setOccupancy(getCapacity(nextGridRef.current));
-    // prepareNext();
     detectLoop()
-
   }
 
   const detectLoop = () => {

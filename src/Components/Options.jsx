@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import {conductorContext} from '../Providers/conductor';
-// import SizePickers from './SizePickers';
-// import 'react-dropdown/style.css';
-// import Dropdown from 'react-dropdown';
+
 
 const Options = (props) => {
   const { showNumbers, setShowNumbers, period, occupancy, dim, setDimAndReset } = useContext(conductorContext);
@@ -42,8 +40,8 @@ const Options = (props) => {
       <div className="section">
         <div className="options">
           <div className="options__basic options__section">
-            <div>
-              <input type="checkbox" checked={showNumbers} onChange={changeValue} /><label> show numbers </label>
+            <div className="options__row options__row--checkbox">
+              <input className="options__checkbox" type="checkbox" checked={showNumbers} onChange={changeValue} /><label> show numbers </label>
             </div>
             <p>{occupancy && `grains: ${occupancy.gridTotal} - ${(parseFloat(occupancy.ratio) * 100).toFixed(2)}%`}</p>
             <p>{`period: ${period}`}</p>
@@ -52,11 +50,11 @@ const Options = (props) => {
             <button onClick={editClicked}>{sizeEditing ? "restart" : "edit dimensions"}</button>
             {!sizeEditing && <div><p>{`height: ${dim.height}`}</p><p>{`width: ${dim.width}`}</p></div>}
             {sizeEditing && <div>
-              <div className="options__picker-row">
+              <div className="options__row options__row--text-input">
                   <label>height: </label>
                   <input className="options__input" onChange={setHeight} value={localDim.height} placeholder="height" />
                 </div>
-                <div className="options__picker-row">
+                <div className="options__row options__row--text-input">
                 <label>width:</label>
                   <input className="options__input" onChange={setWidth} value={localDim.width} placeholder="width" />
                 </div>
