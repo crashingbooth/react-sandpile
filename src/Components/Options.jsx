@@ -20,20 +20,38 @@ const Options = (props) => {
   const editClicked = () => {
     if (sizeEditing) {
       console.log("options", localDim);
-      setDimAndReset(localDim)
-      setSizeEditing(false)
+
+      setDimAndReset(fix(localDim));
+      setSizeEditing(false);
     } else {
-      setSizeEditing(true)
+      setSizeEditing(true);
     }
   }
 
+  const minim = 3;
+  const maxim = 21;
+
   const setHeight = e => {
-    setLocalDim({...localDim, height: Number(e.target.value)})
+    setLocalDim({...localDim, height: Number(e.target.value)});
   }
 
   const setWidth = e => {
-    setLocalDim({...localDim, width: Number(e.target.value)})
+    setLocalDim({...localDim, width: Number(e.target.value)});
   }
+
+  const clamp = (value, min, max) => {
+    if (value < min) { value = min }
+    if (value > max) { value = max }
+    return value;
+  }
+
+  const fix = (obj) => {
+    Object.entries(obj).forEach(([key, val], i) => {
+      obj[key] = clamp(val, minim, maxim);
+    });
+    return obj;
+  }
+
 
   return (
     <>
@@ -48,7 +66,10 @@ const Options = (props) => {
           </div>
           <div className="options__size-picker options__section">
             <button onClick={editClicked}>{sizeEditing ? "restart" : "edit dimensions"}</button>
-            {!sizeEditing && <div><p>{`height: ${dim.height}`}</p><p>{`width: ${dim.width}`}</p></div>}
+            {!sizeEditing && <div>
+                <div className="options__row options__row--text-input"><p>height: </p><p>{dim.height}</p></div>
+                <div className="options__row options__row--text-input"><p>width: </p><p>{dim.width}</p></div>
+                </div>}
             {sizeEditing && <div>
               <div className="options__row options__row--text-input">
                   <label>height: </label>

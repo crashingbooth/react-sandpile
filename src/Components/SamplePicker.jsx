@@ -9,7 +9,6 @@ const SamplePicker = ({rowNum}) => {
     setSelectedValue(rowToLibrary.current[rowNum])
   },[rowToLibrary.current]);
 
-  console.log("picker", rowNum, rowToLibrary && rowToLibrary.current[rowNum]);
 
   const setSample = (e) => {
     setSelectedValue(e.target.value)

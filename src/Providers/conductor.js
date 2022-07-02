@@ -55,7 +55,7 @@ const Conductor = (props) => {
     } else if (staleAction.current === 'centre') {
       coord = {x: Math.floor(dim.width/2), y: Math.floor(dim.height/2) };
     }
-
+    console.log(dim, coord, staleAction.current);
     nextGridRef.current[coord.y][coord.x] += 1;
     topples.current = getToppledPiles(nextGridRef.current);
   }
