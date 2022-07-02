@@ -13,7 +13,8 @@ const Conductor = (props) => {
   const topples = useRef();
   const rowToLibrary = useRef();
   const poolList = useRef()
-  const staleAction = useRef();
+  const staleActionRef = useRef();
+  const [staleAction, setStaleActionState] = useState('random');
   const [grid, setGrid] = useState();
   const [showNumbers, setShowNumbers] = useState(true);
   const occupancyRef = useRef();
@@ -29,7 +30,7 @@ const Conductor = (props) => {
   useEffect(() => {
     reset()
     poolList.current = Object.keys(pool);
-    staleAction.current = 'random';
+    setStaleAction(staleAction);
   },[dim])
 
   const prepareNext = () => {
@@ -44,15 +45,15 @@ const Conductor = (props) => {
   }
 
   const performStaleAction = () => {
-    if (staleAction.current === 'wait') {
+    if (staleActionRef.current === 'wait') {
       topples.current = getToppledPiles(nextGridRef.current);
       return;
     }
 
     let coord;
-    if (staleAction.current === 'random') {
+    if (staleActionRef.current === 'random') {
       coord = randCoord(dim);
-    } else if (staleAction.current === 'centre') {
+    } else if (staleActionRef.current === 'centre') {
       coord = {x: Math.floor(dim.width/2), y: Math.floor(dim.height/2) };
     }
     nextGridRef.current[coord.y][coord.x] += 1;
@@ -145,8 +146,9 @@ const Conductor = (props) => {
   }
 
   const setStaleAction = action => {
-    staleAction.current = action;
-    const wasPlaying = playing.current;
+    console.log("action", action);
+    staleActionRef.current = action;
+    setStaleActionState(action);
   }
 
   const playPause = () => {
@@ -169,6 +171,12 @@ const Conductor = (props) => {
     console.log("rtl", rowToLibrary);
   }
 
+  const enactDemoSettings = () => {
+    setStaleAction('centre');
+    setDimAndReset({width: 7, height: 5});
+    stop();
+  }
+
 
   const provideData = {
     grid,
@@ -179,12 +187,15 @@ const Conductor = (props) => {
     period,
     reset,
     setStaleAction,
+    staleActionRef,
+    staleAction,
     showNumbers,
     setShowNumbers,
     rowToLibrary,
     poolList,
     changeRowToLibrary,
-    dim, setDimAndReset
+    dim, setDimAndReset,
+    enactDemoSettings
   };
 
   return (

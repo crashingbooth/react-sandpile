@@ -1,6 +1,7 @@
 import GridWrapper from './GridWrapper';
 import Transport from './Transport';
 import Options from './Options';
+import AboutSection from './AboutSection';
 import "../sass/main.scss"
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Transport/>
           <Options/>
           <GridWrapper/>
+          <AboutSection/>
         </div>
       </div>
     </div>

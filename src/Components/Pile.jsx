@@ -24,7 +24,7 @@ const Pile = ({numChips, coord}) => {
   }
 
   return (
-    <button className={`pile ${getChipState(numChips)}`} onClick={sendIncrement}>{showNumbers ? numChips : ""}</button>
+    <button className={`pile ${getChipState(numChips)}`} onClick={sendIncrement}>{showNumbers && numChips != 0 ? numChips : ""}</button>
   )
 }
 

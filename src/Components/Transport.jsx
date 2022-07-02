@@ -2,11 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import {conductorContext} from '../Providers/conductor';
 
 const Transport = (props) => {
-  const { playPause, isPlaying, reset, setStaleAction } = useContext(conductorContext);
+  const { playPause, isPlaying, reset, setStaleAction, staleAction } = useContext(conductorContext);
+  console.log(staleAction);
 
   const selectStaleAction = (action) => {
     setStaleAction(action.target.value);
   }
+
+  const actions = {wait: "wait", random: "add random", centre: "add centre"};
 
   const cleanReset = () => {
     reset("clean");
@@ -25,9 +28,13 @@ const Transport = (props) => {
         <div className="transport__stale-action">
           <h3>when still:</h3>
           <div onChange={selectStaleAction} className="transport__radio-group">
-            <input type="radio" value="wait" name="staticAction"  /> <label>wait </label>
-            <input type="radio" value="random" name="staticAction" defaultChecked/> <label>add random </label>
-            <input type="radio" value="centre" name="staticAction" /> <label>add center </label>
+            {Object.keys(actions).map(action =>
+              (<div ><input type="radio"
+                      value={action}
+                      checked={action === staleAction}
+                      name="staticAction" />
+               <label>{actions[action]}</label> </div>)
+            )}
           </div>
         </div>
       </div>
