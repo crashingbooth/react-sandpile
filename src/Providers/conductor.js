@@ -35,7 +35,7 @@ const Conductor = (props) => {
   const prepareNext = () => {
     const toppledPiles = [...topples.current];
     if (toppledPiles.length === 0) {
-      performStaleAction();
+      performStaleAction(dim);
     } else {
       const diffGrid = getDifferenceGrid(toppledPiles, dim);
       nextGridRef.current = applyDifferenceGrid(nextGridRef.current, diffGrid, dim);
@@ -55,7 +55,6 @@ const Conductor = (props) => {
     } else if (staleAction.current === 'centre') {
       coord = {x: Math.floor(dim.width/2), y: Math.floor(dim.height/2) };
     }
-    console.log(dim, coord, staleAction.current);
     nextGridRef.current[coord.y][coord.x] += 1;
     topples.current = getToppledPiles(nextGridRef.current);
   }
@@ -110,16 +109,9 @@ const Conductor = (props) => {
     stepRef.current += 1;
   }
 
-  const reset = () => {
-    nextGridRef.current = emptyGrid(dim);
+  const reset = (resetType) => {
+    nextGridRef.current = resetType === 'random' ? randomGrid(dim) : emptyGrid(dim);
     rowToLibrary.current = Array(dim.height).fill("").map((e,i) => Object.keys(pool)[i % Object.keys(pool).length]);
-    setGrid(nextGridRef.current);
-    topples.current = [];
-    observationReset();
-  }
-
-  const randomReset = () => {
-    nextGridRef.current = randomGrid(dim);
     setGrid(nextGridRef.current);
     topples.current = [];
     observationReset();
@@ -168,6 +160,8 @@ const Conductor = (props) => {
 
   const setDimAndReset = newDim => {
     setDim(newDim);
+    stop()
+    reset();
   }
 
   const changeRowToLibrary = (rowNum, newValue) => {
@@ -184,7 +178,6 @@ const Conductor = (props) => {
     occupancy,
     period,
     reset,
-    randomReset,
     setStaleAction,
     showNumbers,
     setShowNumbers,

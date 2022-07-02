@@ -2,17 +2,25 @@ import React, { useState, useEffect, useContext } from 'react';
 import {conductorContext} from '../Providers/conductor';
 
 const Transport = (props) => {
-  const { playPause, isPlaying, reset, randomReset, setStaleAction } = useContext(conductorContext);
+  const { playPause, isPlaying, reset, setStaleAction } = useContext(conductorContext);
 
   const selectStaleAction = (action) => {
     setStaleAction(action.target.value);
+  }
+
+  const cleanReset = () => {
+    reset("clean");
+  }
+
+  const randomReset = () => {
+    reset("random");
   }
 
   return (
     <>
       <div className="transport section">
         <button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button>
-        <button onClick={reset}>Reset</button>
+        <button onClick={cleanReset}>Reset</button>
         <button onClick={randomReset}>Random</button>
         <div className="transport__stale-action">
           <h3>when still:</h3>
