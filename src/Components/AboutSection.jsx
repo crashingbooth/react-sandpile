@@ -7,13 +7,13 @@ const AboutSection = ({}) => {
   const [showAbout, setShowAbout] = useState(false);
 
   const handleClick = () => {
-    setShowAbout(!showAbout);
+    setShowAbout(true);
     enactDemoSettings();
   }
 
   return (
     <>
-      <div className="section" onClick={handleClick}>
+      <div className={`section about-section ${showAbout ? "about-section--expanded" : ""}`} onClick={handleClick}>
         {!showAbout && <div><p>What is happening here?</p></div>}
         {showAbout && <About/>}
       </div>

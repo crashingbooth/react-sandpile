@@ -3,7 +3,6 @@ import {conductorContext} from '../Providers/conductor';
 
 const Transport = (props) => {
   const { playPause, isPlaying, reset, setStaleAction, staleAction } = useContext(conductorContext);
-  console.log(staleAction);
 
   const selectStaleAction = (action) => {
     setStaleAction(action.target.value);

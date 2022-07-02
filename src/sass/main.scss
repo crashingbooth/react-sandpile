@@ -184,6 +184,34 @@ body {
   }
 }
 
+.about-section {
+  max-width: 60rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto 0;
+
+  &--expanded {
+    min-height: 13rem;
+  }
+
+  &__button {
+    width: 10rem;
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  button {
+    border: none;
+    background-color: black;
+  }
+
+  i {
+    color: $color-5;
+    font-size: 3rem;
+  }
+}
+
 .grid {
   display: flex;
   flex-direction: column;

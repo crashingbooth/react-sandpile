@@ -4,9 +4,34 @@ import { conductorContext } from '../Providers/conductor';
 const About = ({}) => {
   const { } = useContext(conductorContext);
   const [showAbout, setShowAbout] = useState(false);
+  const [page, setPage] = useState(0);
 
   const handleClick = () => {
     setShowAbout(!showAbout);
+  }
+
+  const showBack = () => {
+    console.log(page);
+    return page > 0;
+  }
+
+  const showNext = () => {
+    return page < texts.length - 1;
+  }
+
+  const handlePageChange = (direction) => {
+    let newPage = page;
+    newPage += direction === 'back' ? -1 : 1;
+    if (newPage < 0 || newPage > texts.length -1) { return }
+    setPage(newPage);
+  }
+
+  const turnBack = () => {
+    handlePageChange('back');
+  }
+
+  const turnForward = () => {
+    handlePageChange('forward');
   }
 
   const text1 = "The Abelian Sandpile Model is a cellular automaton that can be said to roughly model toppling piles of sand. It works like this: You have a grid of cells each of which can safely hold one, two, or three grains of sand. But if you add a fourth grain, the cell 'topples' and its four grain are disbursed to its four cardinal neighbours.";
@@ -19,14 +44,17 @@ const About = ({}) => {
 
   const text5 = "Each row in the grid is associated with a set of audio samples, and each cell is mapped to a sample from that set. When a cell topples, that sample is triggered. You can change the sample set by tapping the icon to the right of each grid row."
 
+  const texts = [text1,text2, text3, text4, text5];
+
   return (
     <>
-      <h2>Abelian Sandpiles</h2>
-      <p>{text1}</p>
-      <p>{text2}</p>
-      <p>{text3}</p>
-      <p>{text4}</p>
-      <p>{text5}</p>
+      <div className="about-section__button">
+        <button onClick={turnBack}> {showBack() && <i className="fas fa-chevron-left"> </i>}</button>
+      </div>
+      <p>{texts[page]}</p>
+      <div className="about-section__button">
+        <button onClick={turnForward}>  {showNext() && <i className="fas fa-chevron-right"> </i>}</button>
+      </div>
     </>
   )
 }

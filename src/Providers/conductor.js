@@ -146,7 +146,6 @@ const Conductor = (props) => {
   }
 
   const setStaleAction = action => {
-    console.log("action", action);
     staleActionRef.current = action;
     setStaleActionState(action);
   }
@@ -168,7 +167,6 @@ const Conductor = (props) => {
 
   const changeRowToLibrary = (rowNum, newValue) => {
     rowToLibrary.current[rowNum] = newValue;
-    console.log("rtl", rowToLibrary);
   }
 
   const enactDemoSettings = () => {
