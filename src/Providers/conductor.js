@@ -90,6 +90,7 @@ const Conductor = (props) => {
     Tone.Transport.stop();
     Tone.Transport.cancel();
     playing.current = false;
+    setIsPlaying(false);
   }
 
   const nextSequence = () => {
@@ -172,7 +173,6 @@ const Conductor = (props) => {
   const enactDemoSettings = () => {
     setStaleAction('centre');
     setDimAndReset({width: 7, height: 5});
-    stop();
   }
 
 

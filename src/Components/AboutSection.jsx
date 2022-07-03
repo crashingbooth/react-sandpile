@@ -7,8 +7,10 @@ const AboutSection = ({}) => {
   const [showAbout, setShowAbout] = useState(false);
 
   const handleClick = () => {
-    setShowAbout(true);
-    enactDemoSettings();
+    if (!showAbout) {
+      setShowAbout(true);
+      enactDemoSettings();
+    }
   }
 
   return (

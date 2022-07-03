@@ -39,6 +39,7 @@ body {
   border: 1px solid gray;
   border-radius: .5rem;
   font-family: Arial, Helvetica, sans-serif;
+  width: 85%;
 
   h3 {
     font-size: 1.5rem;
@@ -69,6 +70,14 @@ body {
   &__stale-action {
     display: flex;
     flex-direction: column;
+    min-width: 12rem;;
+
+    &--row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 2rem;
+    }
   }
 }
 
@@ -142,13 +151,13 @@ body {
 .sample-selector__wrapper {
   margin: $section-margin 0;
   padding: $section-padding 0;
-  margin-left: auto;
 }
 
 .sample-selector {
   display: block;
   height: $pile-size;
   width: $pile-size;
+  margin: 1px;
 
   .icon {
     display: flex;
@@ -192,11 +201,16 @@ body {
   margin: auto 0;
 
   &--expanded {
-    min-height: 13rem;
+    min-height: 14rem;
   }
 
   &__button {
     width: 10rem;
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  &__text {
     margin: auto auto;
     padding: 0 2rem;
   }
@@ -259,5 +273,11 @@ body {
 
   &--topple {
     background-color: $color-5;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .section {
+    width: 100%
   }
 }

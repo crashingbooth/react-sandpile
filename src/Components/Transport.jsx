@@ -28,11 +28,14 @@ const Transport = (props) => {
           <h3>when still:</h3>
           <div onChange={selectStaleAction} className="transport__radio-group">
             {Object.keys(actions).map(action =>
-              (<div ><input type="radio"
+              (<div className="transport__stale-action--row">
+                <label>{actions[action]}</label>
+                <input type="radio"
                       value={action}
+                      key={action}
                       checked={action === staleAction}
                       name="staticAction" />
-               <label>{actions[action]}</label> </div>)
+              </div>)
             )}
           </div>
         </div>

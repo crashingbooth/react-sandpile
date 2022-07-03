@@ -51,7 +51,9 @@ const About = ({}) => {
       <div className="about-section__button">
         <button onClick={turnBack}> {showBack() && <i className="fas fa-chevron-left"> </i>}</button>
       </div>
-      <p>{texts[page]}</p>
+      <div className="about-section__text">
+        <p>{texts[page]}</p>
+      </div>
       <div className="about-section__button">
         <button onClick={turnForward}>  {showNext() && <i className="fas fa-chevron-right"> </i>}</button>
       </div>
