@@ -11,7 +11,8 @@
 }
 
 html {
-  font-size: 62.5%
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -23,8 +24,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem;
+  padding: 3rem 4rem ;
   background-color: $color-0;
+  width: 100%;
 
   &__container {
     display: flex;
@@ -33,13 +35,21 @@ body {
   }
 }
 
+.App-header {
+  h1 {
+    color: $color-4;
+    text-align: center;
+    padding: 3rem 0 0 0;
+  }
+}
+
 .section {
   padding: $section-padding;
   margin: $section-margin;
   border: 1px solid gray;
   border-radius: .5rem;
-  font-family: Arial, Helvetica, sans-serif;
-  width: 85%;
+  min-width: 60rem;
+
 
   h3 {
     font-size: 1.5rem;
@@ -58,13 +68,16 @@ body {
   flex-direction: row;
   justify-content: space-around;
 
+  &--button-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
   button {
     padding: .5rem;
     margin: 1rem;
-  }
-
-  &____radio-group {
-
+    height: 3rem;
   }
 
   &__stale-action {
@@ -84,6 +97,7 @@ body {
 .options {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 
   label {
     font-size: 1.5rem;
@@ -137,15 +151,10 @@ body {
   }
 }
 
-.btn {
-
-}
-
 .grid-wrapper {
   display: flex;
   flex-direction: row;
-  position: relative;
-  left: $half-pile-size;
+  right: calc($pile-size * -0.6);
 }
 
 .sample-selector__wrapper {
@@ -189,7 +198,13 @@ body {
   }
 
   &__dropdown {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
+  }
+
+  label {
+    padding-left: 1rem;
+    vertical-align: sub;
   }
 }
 
@@ -198,10 +213,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: auto 0;
 
   &--expanded {
-    min-height: 14rem;
+    min-height: 19rem;
   }
 
   &__button {
@@ -218,6 +232,17 @@ body {
   button {
     border: none;
     background-color: black;
+  }
+
+  a {
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding-top: .5rem;
+  }
+
+  a:visited {
+    color: $color-2;
   }
 
   i {
@@ -280,4 +305,10 @@ body {
   .section {
     width: 100%
   }
+
+  .pile {
+    width: $half-pile-size;
+    height: $half-pile-size;
+  }
+
 }

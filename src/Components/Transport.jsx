@@ -21,9 +21,9 @@ const Transport = (props) => {
   return (
     <>
       <div className="transport section">
-        <button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button>
-        <button onClick={cleanReset}>Reset</button>
-        <button onClick={randomReset}>Random</button>
+        <div className="transport--button-row"><button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button></div>
+        <div className="transport--button-row"><button onClick={cleanReset}>Reset</button></div>
+        <div className="transport--button-row"><button onClick={randomReset}>Random</button></div>
         <div className="transport__stale-action">
           <h3>when still:</h3>
           <div onChange={selectStaleAction} className="transport__radio-group">
