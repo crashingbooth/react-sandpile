@@ -32,11 +32,17 @@ const Options = (props) => {
   const maxim = 21;
 
   const setHeight = e => {
-    setLocalDim({...localDim, height: Number(e.target.value)});
+    const val = Number(e.target.value);
+    if (val) {
+      setLocalDim({...localDim, height: val});
+    }
   }
 
   const setWidth = e => {
-    setLocalDim({...localDim, width: Number(e.target.value)});
+    const val = Number(e.target.value);
+    if (val) {
+      setLocalDim({...localDim, width: val});
+    }
   }
 
   const clamp = (value, min, max) => {
