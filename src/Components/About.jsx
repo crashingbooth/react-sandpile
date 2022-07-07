@@ -35,7 +35,7 @@ const About = ({}) => {
 
   const text1 = "The Abelian Sandpile Model is a cellular automaton that can be said to roughly model toppling piles of sand. It works like this: You have a grid of cells each of which can safely hold one, two, or three grains of sand. But if you add a fourth grain, the cell 'topples' and its four grain are disbursed to its four cardinal neighbours.";
 
-  const text2 = "To see how this plays out, either tap 'play' to automatically add grains to the centre of the grid. If you want to control the pace, set the 'when still' behaviour to 'wait', then press 'play' to start the system."
+  const text2 = "To see how this plays out, either tap 'play' to automatically add grains to the centre of the grid. If you want to control the pace, set the 'when stable' behaviour to 'wait', then press 'play' to start the system."
 
   const text3 = "After the fourth grain is added to the centre, it topples to its neighbours, and the neighbours will each have one grain. If that centre cell topples three more times (bringing the total grains to 16), its neighbours will each have four grains, and they themselves will topple to their neighbours. As these four all share the centre cell as a neighbour, it will once again have four grains, and will topple again. This is a 'cascade'."
 

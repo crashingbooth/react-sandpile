@@ -20,6 +20,11 @@ body {
   background-color: $color-0;
 }
 
+button {
+  height: 3rem;
+  color: $color-1;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -298,6 +303,10 @@ body {
 
   &--topple {
     background-color: $color-5;
+  }
+
+  p {
+    color: $color-0;
   }
 }
 
