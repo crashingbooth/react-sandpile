@@ -1,0 +1,43 @@
+
+.about-section {
+  max-width: 60rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &--expanded {
+    min-height: 19rem;
+  }
+
+  &__button {
+    width: 10rem;
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  &__text {
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  button {
+    border: none;
+    background-color: black;
+  }
+
+  a {
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding-top: .5rem;
+  }
+
+  a:visited {
+    color: $color-2;
+  }
+
+  i {
+    color: $color-5;
+    font-size: 3rem;
+  }
+}

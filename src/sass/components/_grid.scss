@@ -1,0 +1,60 @@
+
+.grid-wrapper {
+  display: flex;
+  flex-direction: row;
+  right: calc($pile-size * -0.6);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid gray;
+  border-radius: .5rem;
+  margin: $section-margin;
+  padding: $section-padding;
+
+  top: $pile-size;
+}
+
+.grid__pile-row {
+  margin: auto 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.pile {
+  width: $pile-size;
+  height: $pile-size;
+  border-radius: 5rem;
+  border: none;
+  margin: 1px;
+
+  &--no-chips {
+    background-color: $color-0;
+  }
+
+  &--one-chip {
+    background-color: $color-1;
+  }
+
+  &--two-chips {
+    background-color: $color-2;
+  }
+
+  &--three-chips {
+    background-color: $color-3;
+  }
+
+  &--four-chips {
+    background-color: $color-4;
+  }
+
+  &--topple {
+    background-color: $color-5;
+  }
+
+  p {
+    color: $color-0;
+  }
+}

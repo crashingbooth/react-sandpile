@@ -1,0 +1,242 @@
+@import "base/base";
+@import "abstracts/variables";
+@import "components/grid";
+@import "components/transport";
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: $color-0;
+}
+
+button {
+  height: 3rem;
+  color: $color-1;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 4rem ;
+  background-color: $color-0;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.App-header {
+  h1 {
+    color: $color-4;
+    text-align: center;
+    padding: 3rem 0 0 0;
+  }
+}
+
+.section {
+  padding: $section-padding;
+  margin: $section-margin;
+  border: 1px solid gray;
+  border-radius: .5rem;
+  min-width: 60rem;
+
+
+  h3 {
+    font-size: 1.5rem;
+    color: $color-5;
+    font-weight: 300;
+  }
+
+  label, p {
+    font-size: 1.5rem;
+    color: $color-5;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    min-height: 6rem;
+    min-width: 17rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    height: $options-line-height;
+
+    &--text-input {
+      justify-content: space-between;
+    }
+
+    &--checkbox {
+      justify-content: flex-start;
+    }
+  }
+
+  input {
+    display: block;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 2rem;
+  }
+
+  button {
+    margin-bottom: .3rem;
+  }
+
+  p {
+    display: block;
+    height: $options-line-height;
+  }
+
+  &__checkbox {
+    width: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  &__input {
+    width: 3rem;
+  }
+}
+
+.grid-wrapper {
+  display: flex;
+  flex-direction: row;
+  right: calc($pile-size * -0.6);
+}
+
+.sample-selector__wrapper {
+  margin: $section-margin 0;
+  padding: $section-padding 0;
+}
+
+.sample-selector {
+  display: block;
+  height: $pile-size;
+  width: $pile-size;
+  margin: 1px;
+
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $pile-size;
+    width: $pile-size;
+    font-size: 2rem;
+    color: $color-5;
+    text-align: center;
+    margin: 2px 0 ;
+  }
+
+  button {
+    background-color: black;
+    border: none;
+  }
+}
+
+.sample-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__dropdown {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+  }
+
+  label {
+    padding-left: 1rem;
+    vertical-align: sub;
+  }
+}
+
+.about-section {
+  max-width: 60rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &--expanded {
+    min-height: 19rem;
+  }
+
+  &__button {
+    width: 10rem;
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  &__text {
+    margin: auto auto;
+    padding: 0 2rem;
+  }
+
+  button {
+    border: none;
+    background-color: black;
+  }
+
+  a {
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding-top: .5rem;
+  }
+
+  a:visited {
+    color: $color-2;
+  }
+
+  i {
+    color: $color-5;
+    font-size: 3rem;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .section {
+    width: 100%
+  }
+
+  .pile {
+    width: $half-pile-size;
+    height: $half-pile-size;
+  }
+
+}

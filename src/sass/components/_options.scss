@@ -1,0 +1,108 @@
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    min-height: 6rem;
+    min-width: 17rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    height: $options-line-height;
+
+    &--text-input {
+      justify-content: space-between;
+    }
+
+    &--checkbox {
+      justify-content: flex-start;
+    }
+  }
+
+  input {
+    display: block;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 2rem;
+  }
+
+  button {
+    margin-bottom: .3rem;
+  }
+
+  p {
+    display: block;
+    height: $options-line-height;
+  }
+
+  &__checkbox {
+    width: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  &__input {
+    width: 3rem;
+  }
+}
+
+.sample-selector__wrapper {
+  margin: $section-margin 0;
+  padding: $section-padding 0;
+}
+
+.sample-selector {
+  display: block;
+  height: $pile-size;
+  width: $pile-size;
+  margin: 1px;
+
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $pile-size;
+    width: $pile-size;
+    font-size: 2rem;
+    color: $color-5;
+    text-align: center;
+    margin: 2px 0 ;
+  }
+
+  button {
+    background-color: black;
+    border: none;
+  }
+}
+
+.sample-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__dropdown {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+  }
+
+  label {
+    padding-left: 1rem;
+    vertical-align: sub;
+  }
+}
