@@ -61,32 +61,30 @@ const Options = (props) => {
 
   return (
     <>
-      <div className="section">
-        <div className="options">
-          <div className="options__basic options__section">
-            <div className="options__row options__row--checkbox">
-              <input className="options__checkbox" type="checkbox" checked={showNumbers} onChange={changeValue} /><label> show numbers </label>
-            </div>
-            <p>{occupancy && `grains: ${occupancy.gridTotal} - ${(parseFloat(occupancy.ratio) * 100).toFixed(2)}%`}</p>
-            <p>{`period: ${period}`}</p>
+      <div className="section options">
+        <div className="options__basic options__section">
+          <div className="options__row options__row--checkbox">
+            <input className="options__checkbox" type="checkbox" checked={showNumbers} onChange={changeValue} /><label> show numbers </label>
           </div>
-          <div className="options__size-picker options__section">
-            <button onClick={editClicked}>{sizeEditing ? "restart" : "edit dimensions"}</button>
-            {!sizeEditing && <div>
-                <div className="options__row options__row--text-input"><p>height: </p><p>{dim.height}</p></div>
-                <div className="options__row options__row--text-input"><p>width: </p><p>{dim.width}</p></div>
-                </div>}
-            {sizeEditing && <div>
+          <p>{occupancy && `grains: ${occupancy.gridTotal} - ${(parseFloat(occupancy.ratio) * 100).toFixed(2)}%`}</p>
+          <p>{`period: ${period}`}</p>
+        </div>
+        <div className="options__size-picker options__section">
+          <button onClick={editClicked}>{sizeEditing ? "restart" : "edit dimensions"}</button>
+          {!sizeEditing && <div>
+              <div className="options__row options__row--text-input"><p>height: </p><p>{dim.height}</p></div>
+              <div className="options__row options__row--text-input"><p>width: </p><p>{dim.width}</p></div>
+              </div>}
+          {sizeEditing && <div>
+            <div className="options__row options__row--text-input">
+                <label>height: </label>
+                <input className="options__input" onChange={setHeight} value={localDim.height} placeholder="height" />
+              </div>
               <div className="options__row options__row--text-input">
-                  <label>height: </label>
-                  <input className="options__input" onChange={setHeight} value={localDim.height} placeholder="height" />
-                </div>
-                <div className="options__row options__row--text-input">
-                <label>width:</label>
-                  <input className="options__input" onChange={setWidth} value={localDim.width} placeholder="width" />
-                </div>
-            </div>}
-          </div>
+              <label>width:</label>
+                <input className="options__input" onChange={setWidth} value={localDim.width} placeholder="width" />
+              </div>
+          </div>}
         </div>
       </div>
     </>

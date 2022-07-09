@@ -2,7 +2,7 @@
 .grid-wrapper {
   display: flex;
   flex-direction: row;
-  right: calc($pile-size * -0.6);
+  position: relative;
 }
 
 .grid {
@@ -13,8 +13,8 @@
   border-radius: .5rem;
   margin: $section-margin;
   padding: $section-padding;
-
-  top: $pile-size;
+  position: relative;
+  left: calc($sample-picker-width - ($sample-picker-width / 2));
 }
 
 .grid__pile-row {
@@ -56,5 +56,59 @@
 
   p {
     color: $color-0;
+  }
+}
+
+
+.sample-selector__wrapper {
+  margin: $section-margin 0;
+  padding: $section-padding 0;
+  position: relative;
+  left: calc($sample-picker-width - ($sample-picker-width / 2));
+}
+
+.sample-selector {
+  display: block;
+  height: $pile-size;
+  width: $pile-size;
+  margin: 1px;
+
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $pile-size;
+    width: $pile-size;
+    font-size: 2rem;
+    color: $color-5;
+    text-align: center;
+    margin: 2px 0 ;
+  }
+
+  button {
+    background-color: black;
+    border: none;
+  }
+}
+
+.sample-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__dropdown {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+  }
+
+  label {
+    padding-left: 1rem;
+    vertical-align: sub;
   }
 }
