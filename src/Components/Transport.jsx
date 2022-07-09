@@ -21,23 +21,28 @@ const Transport = (props) => {
   return (
     <>
       <div className="transport section">
-        <div className="transport--button-row"><button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button></div>
-        <div className="transport--button-row"><button onClick={cleanReset}>Clear</button></div>
-        <div className="transport--button-row"><button onClick={randomReset}>Random</button></div>
-        <div className="transport__stale-action">
-          <h3>when stable:</h3>
-          <div onChange={selectStaleAction} className="transport__radio-group">
-            {Object.keys(actions).map(action =>
-              (<div className="transport__stale-action--row">
-                <label>{actions[action]}</label>
-                <input type="radio"
-                      value={action}
-                      key={action}
-                      checked={action === staleAction}
-                      name="staticAction" />
-              </div>)
-            )}
+        <div className="transport__playback transport__grouping">
+          <div className="transport--button-row"><button onClick={playPause}>{`${isPlaying ? "Stop" : "Play"}`}</button></div>
+          <div className="transport__stale-action">
+            <h3>when stable:</h3>
+            <div onChange={selectStaleAction} className="transport__radio-group">
+              {Object.keys(actions).map(action =>
+                (<div className="transport__stale-action--row">
+                  <label>{actions[action]}</label>
+                  <input type="radio"
+                        value={action}
+                        key={action}
+                        checked={action === staleAction}
+                        name="staticAction" />
+                </div>)
+              )}
+            </div>
           </div>
+        </div>
+        <div className="transport__reset-controls transport__grouping">
+          <div className="transport--button-row"><button onClick={cleanReset}>Clear</button></div>
+          <div className="transport--button-row"><button onClick={randomReset}>Random</button>
+        </div>
         </div>
       </div>
     </>

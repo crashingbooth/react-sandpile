@@ -28,4 +28,33 @@
       margin-left: 2rem;
     }
   }
+
+  &__grouping {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+  }
+
+
+  &__playback {
+
+  }
+
+  &__reset-controls {
+
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .transport {
+    flex-direction: column;
+
+    &__grouping {
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+  }
+
 }
