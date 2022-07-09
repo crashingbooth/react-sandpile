@@ -10,7 +10,7 @@
   &__section {
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 1rem;
     min-height: 6rem;
     min-width: 17rem;
   }
@@ -43,7 +43,7 @@
 
   p {
     display: block;
-    height: $options-line-height;
+    min-height: $options-line-height;
   }
 
   &__checkbox {
@@ -53,5 +53,14 @@
 
   &__input {
     width: 3rem;
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .options {
+      justify-content: space-between;
+    &__section {
+          min-width: 13rem;
+    }
   }
 }
