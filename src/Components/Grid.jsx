@@ -7,7 +7,7 @@ const Grid = () => {
 
   return (
     <div className="grid">
-      {grid && grid.map((row, i) => (<PileRow row={row} key={i} rowNum={i}/>)) }
+      {grid && grid.map((row, i) => (<PileRow row={row} key={i} rowNum={i} gridWidth={row.length}/>)) }
     </div>
   )
 }

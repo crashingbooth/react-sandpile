@@ -112,3 +112,21 @@
     vertical-align: sub;
   }
 }
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .grid {
+    &__pile-row {
+        margin: 0 0;
+    }
+  }
+
+  .pile {
+    width: $half-pile-size;
+    height: $half-pile-size;
+  }
+
+  .pile--reduced {
+    width: $pile-size-reduced;
+    height: $pile-size-reduced;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { conductorContext } from '../Providers/conductor';
 
-const Pile = ({numChips, coord}) => {
+const Pile = ({numChips, coord, gridWidth}) => {
   const { increment, showNumbers } = useContext(conductorContext);
   const getChipState = numChips => {
     if (numChips === 1) {
@@ -24,7 +24,7 @@ const Pile = ({numChips, coord}) => {
   }
 
   return (
-    <button className={`pile ${getChipState(numChips)}`} onClick={sendIncrement}>{showNumbers && numChips != 0 ? numChips : ""}</button>
+    <button className={`pile ${getChipState(numChips)} ${gridWidth > 15 ? "pile--reduced" : ""}`} onClick={sendIncrement}>{showNumbers && numChips > 0 ? numChips : ""}</button>
   )
 }
 

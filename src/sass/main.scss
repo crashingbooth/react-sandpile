@@ -26,7 +26,7 @@ body {
 
 button {
   height: 3rem;
-  color: $color-1;
+  color: $color-0;
 }
 
 .main {
@@ -49,6 +49,7 @@ button {
     color: $color-4;
     text-align: center;
     padding: 3rem 0 0 0;
+    font-weight: normal;
   }
 }
 
@@ -77,11 +78,6 @@ button {
   .section {
     width: 100%;
     min-width: 20rem;
-  }
-
-  .pile {
-    width: $half-pile-size;
-    height: $half-pile-size;
   }
 
 }
